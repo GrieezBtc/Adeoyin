@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#111111" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <title>Abuja to Lagos — For Adeoyin</title>
+  <meta name="description" content="469km apart. But you're the closest thing to my heart, Adeoyin." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect fill='%23111111' width='64' height='64' rx='14'/%3E%3Cpath fill='%23FF69B4' d='M32 50S12 36 12 22a10 10 0 0 1 20-2 10 10 0 0 1 20 2c0 14-20 28-20 28z'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!--
+    HOW TO EDIT
+    1. Photo: replace assets/hero-photo.jpg with Adeoyin's picture (square works best).
+    2. Countdown date: change data-target on #countdown (ISO format).
+    3. Letters: edit the four <template id="letter-..."> blocks near the bottom.
+    4. Spotify: replace the iframe src with your playlist embed URL.
+    5. Together start date: data-start on <html> is used for "Day X of us".
+  -->
+  <div class="grain" aria-hidden="true"></div>
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <canvas id="confetti"></canvas>
+
+  <div class="loader" id="loader">
+    <div class="loader-inner">
+      <div class="loader-cities">
+        <span>Abuja</span>
+        <span class="loader-line"></span>
+        <span>Lagos</span>
+      </div>
+      <p class="loader-title">For Adeoyin</p>
+      <p class="loader-sub">a letter you can keep</p>
+    </div>
+  </div>
+
+  <button class="music-toggle" id="musicToggle" type="button" aria-pressed="false" aria-label="Play background music">
+    <svg class="note" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18.5a2.5 2.5 0 1 1-1.2-2.1V7.2l10-2.2v9.8a2.5 2.5 0 1 1-1.2-2.1V7.4L9 9.3v9.2z"/></svg>
+    <span class="eq" aria-hidden="true"><span></span><span></span><span></span></span>
+    <span id="musicLabel">Music</span>
+  </button>
+
+  <main>
+    <!-- 1. HERO -->
+    <section class="hero" id="top">
+      <div class="hero-inner">
+        <figure class="hero-photo reveal">
+          <!-- Replace assets/hero-photo.jpg with her photo -->
+          <img src="assets/hero-photo.jpg" alt="For Adeoyin" />
+        </figure>
+        <p class="hero-photo-caption reveal d1">Adeoyin</p>
+
+        <p class="kicker reveal d1">Abuja to Lagos</p>
+
+        <div class="route-card reveal d2">
+          <svg class="route-map" viewBox="0 0 360 200" role="img" aria-label="A glowing path from Abuja to Lagos">
+            <defs>
+              <linearGradient id="routeGrad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#FF69B4" />
+                <stop offset="1" stop-color="#FFB6C1" />
+              </linearGradient>
+              <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="2.4" result="b" />
+                <feMerge>
+                  <feMergeNode in="b" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+            <!-- night sky dust -->
+            <g fill="#FFB6C1" opacity="0.45">
+              <circle cx="28" cy="36" r="0.8" />
+              <circle cx="72" cy="22" r="0.6" />
+              <circle cx="118" cy="48" r="0.7" />
+              <circle cx="166" cy="18" r="0.5" />
+              <circle cx="210" cy="40" r="0.8" />
+              <circle cx="258" cy="24" r="0.6" />
+              <circle cx="300" cy="44" r="0.7" />
+              <circle cx="334" cy="28" r="0.5" />
+              <circle cx="48" cy="78" r="0.5" />
+              <circle cx="188" cy="168" r="0.6" />
+              <circle cx="320" cy="120" r="0.5" />
+              <circle cx="90" cy="170" r="0.5" />
+            </g>
+            <path id="routePath" d="M54 146 C 110 146, 150 64, 230 54 S 300 50, 308 50"
+                  fill="none" stroke="url(#routeGrad)" stroke-width="1.6"
+                  stroke-linecap="round" stroke-dasharray="6 7" filter="url(#glow)" />
+            <path id="routeDraw" d="M54 146 C 110 146, 150 64, 230 54 S 300 50, 308 50"
+                  fill="none" stroke="#fff" stroke-width="1.2" stroke-linecap="round"
+                  opacity="0.85" />
+            <!-- Lagos -->
+            <g transform="translate(54 146)">
+              <circle class="city-pulse lagos" r="12" fill="#FF69B4" />
+              <circle r="5.5" fill="#FF69B4" />
+              <circle r="2.2" fill="#fff" />
+            </g>
+            <!-- Abuja -->
+            <g transform="translate(308 50)">
+              <circle class="city-pulse" r="12" fill="#FFB6C1" />
+              <circle r="5.5" fill="#FFB6C1" />
+              <circle r="2.2" fill="#fff" />
+            </g>
+            <g id="traveler" filter="url(#glow)">
+              <path d="M0 -7 C -3.5 -13, -12 -9, -12 0 C -12 8 0 14 0 14 C 0 14 12 8 12 0 C 12 -9 3.5 -13 0 -7 Z" fill="#FF69B4" />
+            </g>
+            <text x="54" y="176" text-anchor="middle" fill="#FFB6C1" font-size="9" letter-spacing="2.4" font-family="Inter, sans-serif">LAGOS · YOU</text>
+            <text x="308" y="34" text-anchor="middle" fill="#FFB6C1" font-size="9" letter-spacing="2.4" font-family="Inter, sans-serif">ABUJA · ME</text>
+          </svg>
+          <p class="km">469km Apart</p>
+        </div>
+
+        <h1 class="reveal d2">But You're The Closest Thing To My Heart, <em>Adeoyin</em></h1>
+
+        <div class="love-letter reveal d3">
+          <p>You became important to me so naturally. There was no big moment, no warning. One day I just realized that hearing from you had become one of the best parts of my day.</p>
+          <p>I didn't fall in love with you because of what my eyes could see. I fell in love because of how my heart feels when I'm with you. It was never about looks or anything on the surface — it was something deeper that I never expected.</p>
+          <p>You changed everything slowly, in a way I couldn't ignore or explain. And before I even realized what was happening, my heart had already chosen you. Completely.</p>
+        </div>
+
+        <a class="btn reveal d4" href="#story">
+          Continue reading my heart
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 16.5 6 10.5l1.4-1.4L12 13.7l4.6-4.6L18 10.5z"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- 2. OUR STORY -->
+    <section class="section story" id="story">
+      <div class="section-inner">
+        <p class="kicker reveal">Our story so far</p>
+        <h2 class="reveal d1">How You Became My Favorite Notification</h2>
+        <p class="story-lead reveal d2">
+          We are new. Weeks, not years. I am not rushing the story — I am telling it honestly, while it is still warm in my hands.
+          <span class="day-chip" id="dayChip">Together since October 4th</span>
+        </p>
+
+        <div class="timeline">
+          <article class="t-item reveal">
+            <span class="t-dot" aria-hidden="true"></span>
+            <div class="t-card">
+              <p class="t-meta">Chapter one</p>
+              <h3>How We Met</h3>
+              <p><!-- Edit this -->
+                I still think about how easy it was. No performance. No trying too hard. Just two people talking — and somehow, the conversation never ran out. You didn’t arrive in my life with noise. You arrived with calm. And I think that’s when I started paying attention.
+              </p>
+            </div>
+          </article>
+
+          <article class="t-item reveal d1">
+            <span class="t-dot" aria-hidden="true"></span>
+            <div class="t-card">
+              <p class="t-meta">Chapter two</p>
+              <h3>The Night I Knew You Were Different</h3>
+              <p><!-- Edit this -->
+                There was a night the call went longer than it should have. Lagos was loud on your end, Abuja was quiet on mine — and still, it felt like we were in the same room. You didn’t just hear me. You understood me. That’s rare. That’s you. That was the night my heart stopped treating this like a maybe.
+              </p>
+            </div>
+          </article>
+
+          <article class="t-item reveal d2">
+            <span class="t-dot" aria-hidden="true"></span>
+            <div class="t-card">
+              <p class="t-meta">October 4th · the day after National Boyfriend Day</p>
+              <h3>The Day You Became Mine</h3>
+              <p><!-- Edit this -->
+                The world had celebrated boyfriends the day before. On the 4th, I wasn’t following a calendar. I was following my chest. I chose you. Not as a maybe. Not as a “let’s see.” As mine. As yours. As us — even with 469 kilometres still drawn on the map.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. DISTANCE -->
+    <section class="section distance" id="distance">
+      <div class="section-inner wide">
+        <p class="kicker reveal">Why distance doesn’t scare me</p>
+        <h2 class="reveal d1">Abuja Is Just A Location, <em>You're My Destination</em></h2>
+
+        <div class="why-grid">
+          <article class="why reveal">
+            <p class="why-num">01 — Intentional</p>
+            <h3>I am here on purpose</h3>
+            <p><!-- Edit this -->
+              I didn’t stumble into this. Every text, every call, every good morning from Abuja is a decision I keep making — because you are not a habit I fell into. You are a choice I get to keep. Intention is how I love you when I cannot reach out and touch you.
+            </p>
+          </article>
+          <article class="why reveal d1">
+            <p class="why-num">02 — Consistent</p>
+            <h3>I will not go quiet</h3>
+            <p><!-- Edit this -->
+              Distance loves inconsistency. I don’t. I will not be sweet when it is convenient and silent when it is hard. You will not have to wonder where I stand. I will show you. Again. And again. Consistency is my way of closing the kilometres.
+            </p>
+          </article>
+          <article class="why reveal d2">
+            <p class="why-num">03 — Chosen</p>
+            <h3>469km is geography, not a verdict</h3>
+            <p><!-- Edit this -->
+              I am not waiting for the distance to get smaller before I love you properly. I am loving you properly so the distance has nothing to take from us. I chose you with a map between us. I will keep choosing you until the map is just a story we tell.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. OPEN WHEN -->
+    <section class="section open-when" id="letters">
+      <div class="section-inner wide">
+        <p class="kicker reveal">Keep these for later</p>
+        <h2 class="reveal d1">Open When…</h2>
+        <p class="open-lead reveal d2">Four letters. Tap one when you need me and I am still on the other side of the country.</p>
+
+        <div class="card-grid">
+          <button class="ow-card reveal" type="button" data-letter="miss">
+            <span class="seal" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9.5-8.2C.6 10.3 1.1 7 3.8 5.6 6 4.4 8.4 5 12 8.2 15.6 5 18 4.4 20.2 5.6c2.7 1.4 3.2 4.7 1.3 7.2C19 16.4 12 21 12 21z"/></svg>
+            </span>
+            <div>
+              <h3>Open When You Miss Me</h3>
+              <p class="hint">Tap to read</p>
+            </div>
+          </button>
+          <button class="ow-card reveal d1" type="button" data-letter="lagos">
+            <span class="seal" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 3 14.4 8.5 20 9.2l-4 3.9.9 5.7L12 16.5 7.1 18.8 8 13.1 4 9.2l5.6-.7z"/></svg>
+            </span>
+            <div>
+              <h3>Open When Lagos Stress You</h3>
+              <p class="hint">Tap to read</p>
+            </div>
+          </button>
+          <button class="ow-card reveal d2" type="button" data-letter="sleep">
+            <span class="seal" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M21 14.5A8.5 8.5 0 1 1 9.5 3 7 7 0 0 0 21 14.5z"/></svg>
+            </span>
+            <div>
+              <h3>Open When You Can't Sleep</h3>
+              <p class="hint">Tap to read</p>
+            </div>
+          </button>
+          <button class="ow-card reveal d3" type="button" data-letter="doubt">
+            <span class="seal" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 3.2c2.7 2.8 5.8 4.4 5.8 7.6A5.8 5.8 0 1 1 8.4 7.4 5.6 5.6 0 0 1 12 3.2zm4.2 4.8a4.6 4.6 0 0 0-4.2-2.4 4.4 4.4 0 0 0-3.2 1.5c2.4.3 4.6 1.6 5.8 3.6 1-.8 1.6-1.8 1.6-2.7z"/></svg>
+            </span>
+            <div>
+              <h3>Open When You Doubt Us</h3>
+              <p class="hint">Tap to read</p>
+            </div>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. COUNTDOWN -->
+    <section class="section countdown" id="countdown"
+             data-target="2026-11-15T18:00:00+01:00"
+             data-start="2026-10-04T00:00:00+01:00">
+      <div class="section-inner">
+        <p class="kicker reveal">Until the next time</p>
+        <h2 class="reveal d1">Counting Down To Seeing You</h2>
+        <p class="count-sub reveal d2">The kilometres are temporary. This is not.</p>
+        <p class="count-date reveal d2" id="countDateLabel"></p>
+
+        <div class="timer reveal d3" aria-live="polite">
+          <div class="timer-cell"><div class="timer-num" id="tDays">00</div><div class="timer-label">Days</div></div>
+          <div class="timer-cell"><div class="timer-num" id="tHours">00</div><div class="timer-label">Hours</div></div>
+          <div class="timer-cell"><div class="timer-num" id="tMins">00</div><div class="timer-label">Minutes</div></div>
+          <div class="timer-cell"><div class="timer-num" id="tSecs">00</div><div class="timer-label">Seconds</div></div>
+        </div>
+        <p class="together-note" id="togetherNote"></p>
+
+        <div class="spotify reveal">
+          <div class="spotify-head">
+            <img class="spotify-art" src="assets/rose-detail.jpg" alt="" />
+            <div>
+              <h3>Songs That Feel Like You</h3>
+              <p>Our playlist · Spotify</p>
+            </div>
+          </div>
+          <!-- Replace the playlist ID in the src with yours -->
+          <iframe
+            title="Spotify playlist"
+            src="https://open.spotify.com/embed/playlist/37i9dQZF1DX50QitC6Oqtn?utm_source=generator&theme=0"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. SECRET -->
+    <section class="section secret" id="secret">
+      <div class="section-inner">
+        <button class="secret-btn" id="secretBtn" type="button">One last thing, Adeoyin...</button>
+        <div class="secret-reveal" id="secretReveal">
+          <p class="secret-text">
+            No matter the distance between Abuja and Lagos, my heart already chose you completely.
+            <em>It's you. It's always been you.</em>
+            <span class="secret-sign">— Yours</span>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">Abuja → Lagos · For Adeoyin · October 2026</footer>
+
+  <!-- LETTERS: edit the paragraphs inside each template -->
+  <template id="letter-miss">
+    <h3>Open When You Miss Me</h3>
+    <div class="letter-body">
+      <p>Adeoyin,</p>
+      <p>If you opened this, it means the kilometres got loud today.</p>
+      <p>I want you to do something for me. Finish this letter, then close your eyes for a second. I am not far. I am in the way you laugh when you don’t mean to. I am in the last voice note. I am in the quiet after “goodnight.”</p>
+      <p>Missing me is not a problem to solve. It is proof. It means this is real. I miss you too — not casually, not in passing. I miss you like Abuja misses the sea.</p>
+      <p>Come back to this letter whenever you need me closer. I wrote it so you wouldn’t have to wait for my next text to feel held.</p>
+      <p>I’m here.</p>
+    </div>
+    <p class="letter-sign">— Yours</p>
+  </template>
+
+  <template id="letter-lagos">
+    <h3>Open When Lagos Stress You</h3>
+    <div class="letter-body">
+      <p>Adeoyin,</p>
+      <p>Lagos can be a lot. The traffic, the noise, the way the day asks for more than it gives. You don’t have to be strong for me in those hours. You can just be tired. You can just be human.</p>
+      <p>Nothing waiting for you in this city is more important than your peace. Drink water. Eat something. Step outside for air if you can. You are not falling behind. You are carrying a whole life — and you are doing it.</p>
+      <p>When the city is heavy, let me be light. Text me the ugly version of your day. I can hold it. That is not a burden. That is what I asked for when I asked for you.</p>
+      <p>You’ve got this. And I’ve got you.</p>
+    </div>
+    <p class="letter-sign">— Yours, from Abuja</p>
+  </template>
+
+  <template id="letter-sleep">
+    <h3>Open When You Can't Sleep</h3>
+    <div class="letter-body">
+      <p>Adeoyin,</p>
+      <p>It’s late. I know that quiet. The kind where your mind won’t sit still.</p>
+      <p>So let’s not fight the night. Breathe in for four. Out for six. Again. You are safe. You are loved. Nothing that needs solving at this hour is more important than rest.</p>
+      <p>Imagine this: my hand on your back. No talking. No performing. Just the dark, and the knowledge that morning will come, and I will still be choosing you in it.</p>
+      <p>Sleep. I’ll still be here when you wake.</p>
+    </div>
+    <p class="letter-sign">— Yours</p>
+  </template>
+
+  <template id="letter-doubt">
+    <h3>Open When You Doubt Us</h3>
+    <div class="letter-body">
+      <p>Adeoyin,</p>
+      <p>Doubt visits every real thing. It does not mean the thing is fragile. It means the thing matters.</p>
+      <p>So let me say this without poetry, without performance:</p>
+      <p>I am not confused about you. I did not choose you because it was easy. Distance is not easy. I chose you because easy was never the point. You were.</p>
+      <p>We are new. Weeks, not years. I know. I am not pretending we have a decade behind us. I am telling you I do not need a decade to recognise my own heart.</p>
+      <p>If your mind is running — to the kilometres, to the timing, to “what if” — come back to this: my heart already chose you. Completely. That has not changed since October 4th. It will not change tonight.</p>
+      <p>It’s you. Stay.</p>
+    </div>
+    <p class="letter-sign">— Yours</p>
+  </template>
+
+  <div class="modal" id="letterModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <div class="modal-sheet" role="document">
+      <div class="modal-top">
+        <p class="modal-kicker">A letter for you</p>
+        <button class="modal-close" id="modalClose" type="button" aria-label="Close letter">&times;</button>
+      </div>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
